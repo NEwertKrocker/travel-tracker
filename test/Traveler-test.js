@@ -33,6 +33,14 @@ describe('Traveler', () => {
   });
   it('should have an ID number', () => {
     expect(traveler1.id).to.equal(1);
-    expect(traveler2.id).to.equal(2)
+    expect(traveler2.id).to.equal(2);
+  });
+  it('should have a name', () => {
+    expect(traveler1.name).to.equal("Ham Leadbeater");
+    expect(traveler2.name).to.equal("Rachael Vaughten");
+  });
+  it('should keep track of what type of traveler it is', () => {
+    expect(traveler1.travelerType).to.equal("relaxer");
+    expect(traveler3.travelerType).to.equal("shopper");
   });
 });
