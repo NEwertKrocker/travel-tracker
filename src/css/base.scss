@@ -1,6 +1,22 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+* {
+  border: 1px solid blue;
+}
 
 body {
   background: $primary-background;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.travel-card {
+  display: block;
+  height: 600px;
+  width: 400px;
+  background-color: white;
 }

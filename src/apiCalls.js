@@ -5,8 +5,8 @@ const fetchTravelerRepo = () => {
     .catch(err => console.log(err))
 };
 
-const fetchTraveler = () => {
-  return fetch("http://localhost:3001/api/v1/traveler/id")
+const fetchTraveler = (id) => {
+  return fetch(`http://localhost:3001/api/v1/traveler/${id}`)
     .then((response) => response.json())
     .catch(err => console.log(err))
 };
