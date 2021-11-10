@@ -1,6 +1,8 @@
-class Destinations {
-  constructor(destinationData){
-    this.dataset = destinationData.destinations;
+import DataHandler from './DataHandler';
+
+class Destinations extends DataHandler {
+  constructor(dataset) {
+    super(dataset)
   }
 }
 
