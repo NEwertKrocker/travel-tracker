@@ -1,3 +1,6 @@
+import Traveler from './Traveler';
+import Destination from './Destination';
+import Trip from './Trip';
 
 const fetchTravelerRepo = () => {
   return fetch("http://localhost:3001/api/v1/travelers")
@@ -6,8 +9,9 @@ const fetchTravelerRepo = () => {
 };
 
 const fetchTraveler = (id) => {
-  return fetch(`http://localhost:3001/api/v1/traveler/${id}`)
+  return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
     .then((response) => response.json())
+    .then(response => new Traveler(response))
     .catch(err => console.log(err))
 };
 
