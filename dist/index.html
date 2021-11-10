@@ -4,11 +4,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <article>
+  </article>
+
+  <div class="glide" id="travelCardCarousel">
+    <div data-glide-el="track" class="glide__track">
+      <ul class="glide__slides">
+        <!-- these are travel cards -->
+        <li class="glide__slide travel-card">yo</li>
+      </ul>
+      <div data-glide-el="controls">
+        <!-- glide carousel controls -->
+        <button data-glide-dir="<<">Start</button>
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 

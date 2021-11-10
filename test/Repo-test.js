@@ -41,7 +41,7 @@ describe('TravelerRepo', () => {
     expect(TravelerRepo).to.be.a('function');
   });
   it('should be able to hold a set of travelers', () => {
-    expect(travelerRepo1.travelers).to.deep.equal(travelerData);
-    expect(travelerRepo2.travelers).to.deep.equal([travelerData[0], travelerData[2], travelerData[4]])
+    expect(travelerRepo1.dataset).to.deep.equal(travelerData);
+    expect(travelerRepo2.dataset).to.deep.equal([travelerData[0], travelerData[2], travelerData[4]])
   });
 });
