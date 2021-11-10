@@ -9,6 +9,12 @@ class DataHandler {
     })
     return this.filteredDataByID;
   }
+  getDataByUserID(userID){
+    this.filteredDataByUserID = this.dataset.filter((data) => {
+      return data.userID === userID
+    })
+    return this.filteredDataByID;
+  }
 }
 
 export default DataHandler;
