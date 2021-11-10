@@ -1,5 +1,5 @@
 import Traveler from './Traveler';
-import Destination from './Destination';
+import Destinations from './Destination';
 import Trip from './Trip';
 
 const fetchTravelerRepo = () => {
