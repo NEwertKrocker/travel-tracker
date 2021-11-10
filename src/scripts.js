@@ -9,7 +9,7 @@ import Traveler from './Traveler';
 import Destinations from './Destinations';
 import Trips from './Trips';
 import TravelerRepo from './TravelerRepo';
-import Glide from '@glidejs/glide'
+
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 
@@ -23,25 +23,6 @@ let tripsData;
 let travelerRepo;
 let destinations;
 let trips;
-
-const getAPICalls = () => {
-  Promise.all([fetchTravelerRepo(), fetchDestinations(), fetchTrips()])
-    .then(gatheredData => sortData(gatheredData))
-};
-
-const sortData = (gatheredData) => {
-  travelerRepoData = gatheredData[0].travelers;
-  destinationsData = gatheredData[1].destinations;
-  tripsData = gatheredData[2].trips;
-  buildClasses(travelerRepoData, destinationsData, tripsData);
-};
-
-const buildClasses = (travelerRepoData, destinationsData, tripsData) => {
-  buildTravelerRepo(travelerRepoData);
-  buildDestinations(destinationsData);
-  buildTrips(tripsData);
-  console.log(trips.getAllUserTrips(1));
-}
 
 const buildTravelerRepo = (travelerRepoData) => {
   travelerRepo = new TravelerRepo(travelerRepoData);
@@ -60,19 +41,27 @@ const buildTrips = (tripsData) => {
   console.log(trips);
 };
 
-getAPICalls();
+const getAPICalls = () => {
+  Promise.all([fetchTravelerRepo(), fetchDestinations(), fetchTrips()])
+    .then(gatheredData => sortData(gatheredData))
+};
 
-new Glide('#travelCardCarousel', {
-  type: 'carousel',
-  perView: 3,
-  focusAt: 'center',
-  gap: 10,
-  peek: 50,
-  breakpoints: {
-    800: {
-      perView: 1
-    }
-  }
-  }).mount()
+const sortData = (gatheredData) => {
+  travelerRepoData = gatheredData[0].travelers;
+  destinationsData = gatheredData[1].destinations;
+  tripsData = gatheredData[2].trips;
+  buildClasses(travelerRepoData, destinationsData, tripsData);
+};
+
+const buildClasses = (travelerRepoData, destinationsData, tripsData) => {
+  buildTravelerRepo(travelerRepoData);
+  buildDestinations(destinationsData);
+  buildTrips(tripsData);
+  console.log(trips.getAllUserTrips(1));
+  buildTraveler(travelerRepo.dataset[0]);
+  updateDOM(currentTraveler, trips, destinations);
+}
+
+getAPICalls();
 
 export {currentTraveler};
