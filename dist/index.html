@@ -9,23 +9,26 @@
 <body>
   <article>
   </article>
-
-  <div class="glide" id="travelCardCarousel">
-    <div data-glide-el="track" class="glide__track">
-      <ul class="glide__slides">
-        <!-- these are travel cards -->
-        <li class="glide__slide travel-card">yo</li>
-      </ul>
-      <div data-glide-el="controls">
-        <!-- glide carousel controls -->
-        <button data-glide-dir="<<">Start</button>
-        <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+  <section class="trip-grid">
+    <article class="trip-card">
+        <div class="destination-photo">
+          <div>
+            <p class="trip-dates">dates</p>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="trip-info">
+          <h1 class="destination-name">Trip Destination</h1>
+          <blockquote>
+            *url blockquote here*
+          </blockquote>
+          <h2>COSTS:</h2>
+          <p class="lodging-costs">Lodging</p>
+          <p class="trip-costs">flight</p>
+          <h3>Suggested activities:</h3>
+          <p>activities here</p>
+          <!-- card body -->
+        </div>
+  </section>
 
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
