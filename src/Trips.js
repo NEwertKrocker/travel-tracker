@@ -8,6 +8,17 @@ class Trips extends DataHandler {
     this.getDataByUserID(userID);
     return this.filteredDataByUserID;
   }
+  calculateTravelCostYTD(userID, destinations){
+    this.getDataByUserID(userID);
+    let yearlyCost = this.filteredDataByUserID.reduce((totalCost, trip) => {
+        const destination = destinations.getDataByID(trip.destinationID);
+        const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip);
+        const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip);
+        totalCost += lodgingCosts + flightCosts
+        return totalCost
+    }, 0)
+    return yearlyCost
+  }
 }
 
 export default Trips;

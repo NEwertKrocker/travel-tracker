@@ -3,11 +3,17 @@ import { currentTraveler } from './scripts.js';
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations)
   displayGreeting(currentTraveler);
+  displayYTDCosts(currentTraveler, trips, destinations);
 };
 
 const displayGreeting = (currentTraveler) => {
   let greeting = `Welcome, ${currentTraveler.name}!`
   travelerGreeting.innerText = greeting.toUpperCase();
+}
+
+const displayYTDCosts = (currentTraveler, trips, destinations) => {
+  let totalCosts = trips.calculateTravelCostYTD(currentTraveler.id, destinations);
+  totalTravelCosts.innerHTML += `<br> $${totalCosts}`
 }
 
 const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
@@ -39,6 +45,7 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
 
 const tripGrid = document.getElementById('tripGrid');
 const travelerGreeting = document.getElementById('travelerGreeting');
+const totalTravelCosts = document.getElementById('totalTravelCosts');
 
 export default updateDOM;
 export {};
