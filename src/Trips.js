@@ -17,7 +17,7 @@ class Trips extends DataHandler {
         totalCost += lodgingCosts + flightCosts
         return totalCost
     }, 0)
-    return yearlyCost * 1.1;
+    return Math.floor(yearlyCost * 11) / 10;
   }
 }
 
