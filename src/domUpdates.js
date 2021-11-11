@@ -1,5 +1,4 @@
 import { currentTraveler } from './scripts.js';
-import Glide from '@glidejs/glide';
 
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations)
@@ -7,51 +6,36 @@ const updateDOM = (currentTraveler, trips, destinations) => {
 
 const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
   let userTrips = trips.getAllUserTrips(currentTraveler.id);
-  let slidesHTML = ``;
-  userTrips.map((trip) => {
-    slidesHTML += `Hey! A new trip!${trip}`
-  })
-  slideCarousel.HTML =
-    `<div class="glide" id="travelCardCarousel">
-      <div data-glide-el="track" class="glide__track">
-        <ul class="glide__slides">
-          <!-- these are travel cards -->
-          <li class="glide__slide travel-card">yo</li>
-          <li class="glide__slide travel-card">hey</li>
-          <li class="glide__slide travel-card">whassup</li>
-          <li class="glide__slide travel-card">yo</li>
-          <li class="glide__slide travel-card">hey</li>
-          <li class="glide__slide travel-card">whassup</li>
-        </ul>
-        <div data-glide-el="controls">
-          <!-- glide carousel controls -->
-          <button data-glide-dir="<<">Start</button>
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+  userTrips.forEach((trip) => {
+    const destination = destinations.getDataByID(trip.destinationID);
+    console.log(destination[0]);
+    const lodgingCosts = destination[0].estimatedLodgingCostPerDay * trip.duration;
+    const flightCosts = destination[0].estimatedFlightCostPerPerson * trip.travelers;
+    tripGrid.innerHTML += `<article class="trip-card">
+          <div class="destination-photo">
+            <div>
+              <p class="trip-dates">${trip.date} dates</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>`;
-
-
-var tripCarousel = new Glide('#travelCardCarousel', {
-  type: 'carousel',
-  perView: 3,
-  focusAt: 'center',
-  gap: 10,
-  peek: 50,
-  breakpoints: {
-    800: {
-      perView: 1
-    }
-  }
-}).mount()
+          <div class="trip-info">
+            <h1 class="destination-name">${destination[0].destination}</h1>
+            <blockquote>
+              *url blockquote here*
+            </blockquote>
+            <h2>COSTS:</h2>
+            <p class="total-costs">TOTAL: $${lodgingCosts + flightCosts}</p>
+            <p class="lodging-costs">Lodging: $${lodgingCosts}</p>
+            <p class="trip-costs">Flight: $${flightCosts}</p>
+            <h3>Suggested activities:</h3>
+            <p>${trip.suggestedActivities}activities here</p>
+          </div>
+      </article>`
+  })
 }
 
 // QUERY SELECTORS
 
-const slideCarousel = document.getElementById('travelCardCarousel');
+const tripGrid = document.getElementById('tripGrid');
 
 export default updateDOM;
 export {};
