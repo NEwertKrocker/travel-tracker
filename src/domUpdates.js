@@ -7,23 +7,27 @@ const updateDOM = (currentTraveler, trips, destinations) => {
 const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
   let userTrips = trips.getAllUserTrips(currentTraveler.id);
   userTrips.forEach((trip) => {
-  tripGrid.innerHTML += `<article class="trip-card">
+    const destination = destinations.getDataByID(trip.destinationID);
+    console.log(destination[0]);
+    const lodgingCosts = destination[0].estimatedLodgingCostPerDay * trip.duration;
+    const flightCosts = destination[0].estimatedFlightCostPerPerson * trip.travelers;
+    tripGrid.innerHTML += `<article class="trip-card">
           <div class="destination-photo">
             <div>
               <p class="trip-dates">${trip.date} dates</p>
             </div>
           </div>
           <div class="trip-info">
-            <h1 class="destination-name">${trip.destinationID}Trip Destination</h1>
+            <h1 class="destination-name">${destination[0].destination}</h1>
             <blockquote>
               *url blockquote here*
             </blockquote>
             <h2>COSTS:</h2>
-            <p class="lodging-costs">Lodging</p>
-            <p class="trip-costs">flight</p>
+            <p class="total-costs">TOTAL: $${lodgingCosts + flightCosts}</p>
+            <p class="lodging-costs">Lodging: $${lodgingCosts}</p>
+            <p class="trip-costs">Flight: $${flightCosts}</p>
             <h3>Suggested activities:</h3>
             <p>${trip.suggestedActivities}activities here</p>
-            <!-- card body -->
           </div>
       </article>`
   })
