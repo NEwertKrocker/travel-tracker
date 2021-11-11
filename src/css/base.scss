@@ -3,7 +3,7 @@
 @import '_reset';
 
 * {
-  margin: 3px;
+  // margin: 3px;
   border: 1px solid blue;
 }
 
@@ -11,8 +11,13 @@ body {
   background: $primary-background;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.top-banner {
+  display: flex;
+  justify-content: space-between;
+  background-color: teal;
+  min-height: 70px;
 }
 
 .trip-grid {
@@ -20,13 +25,18 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   align-items: center;
+  margin: 5px;
 }
 
 .trip-card {
   display: block;
   height: 400px;
-  width: 400px;
+  width: auto;
   background-color: white;
+}
+
+.trip-info {
+  padding: 5px;
 }
 
 .destination-photo {
@@ -40,8 +50,10 @@ body {
 }
 
 .destination-name {
+  align-self: flex-end;
   position: relative;
   color: white;
+  font-size: 24px;
 }
 
 .trip-dates::before {

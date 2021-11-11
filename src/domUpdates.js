@@ -9,8 +9,8 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
   userTrips.forEach((trip) => {
     const destination = destinations.getDataByID(trip.destinationID);
     console.log(destination[0]);
-    const lodgingCosts = destination[0].estimatedLodgingCostPerDay * trip.duration;
-    const flightCosts = destination[0].estimatedFlightCostPerPerson * trip.travelers;
+    const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip);
+    const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip);
     const destinationImage = destination[0].image;
     tripGrid.innerHTML += `<article class="trip-card">
           <div class="destination-photo" style="background-image: url(${destinationImage});">
