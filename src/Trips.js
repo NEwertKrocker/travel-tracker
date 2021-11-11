@@ -17,7 +17,7 @@ class Trips extends DataHandler {
         totalCost += lodgingCosts + flightCosts
         return totalCost
     }, 0)
-    return yearlyCost
+    return yearlyCost * 1.1;
   }
 }
 
