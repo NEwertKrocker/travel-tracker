@@ -11,17 +11,13 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
     console.log(destination[0]);
     const lodgingCosts = destination[0].estimatedLodgingCostPerDay * trip.duration;
     const flightCosts = destination[0].estimatedFlightCostPerPerson * trip.travelers;
+    const destinationImage = destination[0].image;
     tripGrid.innerHTML += `<article class="trip-card">
-          <div class="destination-photo">
-            <div>
+          <div class="destination-photo" style="background-image: url(${destinationImage});">
               <p class="trip-dates">${trip.date} dates</p>
-            </div>
+              <h1 class="destination-name">${destination[0].destination}</h1>
           </div>
           <div class="trip-info">
-            <h1 class="destination-name">${destination[0].destination}</h1>
-            <blockquote>
-              *url blockquote here*
-            </blockquote>
             <h2>COSTS:</h2>
             <p class="total-costs">TOTAL: $${lodgingCosts + flightCosts}</p>
             <p class="lodging-costs">Lodging: $${lodgingCosts}</p>

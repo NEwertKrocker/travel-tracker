@@ -1,5 +1,6 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import '_reset';
 
 * {
   border: 1px solid blue;
@@ -25,4 +26,13 @@ body {
   height: 400px;
   width: 400px;
   background-color: white;
+}
+
+.destination-photo {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
 }
