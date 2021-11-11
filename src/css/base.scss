@@ -3,6 +3,7 @@
 @import '_reset';
 
 * {
+  margin: 3px;
   border: 1px solid blue;
 }
 
@@ -29,10 +30,24 @@ body {
 }
 
 .destination-photo {
+  position: relative;
   min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-size: cover;
   background-position: center;
+}
+
+.destination-name {
+  position: relative;
+  color: white;
+}
+
+.trip-dates::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
 }
