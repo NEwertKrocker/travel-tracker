@@ -2,26 +2,34 @@ import { currentTraveler } from './scripts.js';
 
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations)
+  displayGreeting(currentTraveler);
+  displayYTDCosts(currentTraveler, trips, destinations);
 };
+
+const displayGreeting = (currentTraveler) => {
+  let greeting = `Welcome, ${currentTraveler.name}!`
+  travelerGreeting.innerText = greeting.toUpperCase();
+}
+
+const displayYTDCosts = (currentTraveler, trips, destinations) => {
+  let totalCosts = trips.calculateTravelCostYTD(currentTraveler.id, destinations);
+  totalTravelCosts.innerHTML += `<br> $${totalCosts}`
+}
 
 const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
   let userTrips = trips.getAllUserTrips(currentTraveler.id);
   userTrips.forEach((trip) => {
     const destination = destinations.getDataByID(trip.destinationID);
-    console.log(destination[0]);
-    const lodgingCosts = destination[0].estimatedLodgingCostPerDay * trip.duration;
-    const flightCosts = destination[0].estimatedFlightCostPerPerson * trip.travelers;
+    const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip);
+    const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip);
+    const destinationImage = destination[0].image;
     tripGrid.innerHTML += `<article class="trip-card">
-          <div class="destination-photo">
-            <div>
-              <p class="trip-dates">${trip.date} dates</p>
-            </div>
+          <div class="destination-photo" style="background-image: url(${destinationImage});">
+              <p class="trip-shader">
+              <h1 class="destination-name">${destination[0].destination}</h1>
+              <p class="trip-dates">${trip.date}</p>
           </div>
           <div class="trip-info">
-            <h1 class="destination-name">${destination[0].destination}</h1>
-            <blockquote>
-              *url blockquote here*
-            </blockquote>
             <h2>COSTS:</h2>
             <p class="total-costs">TOTAL: $${lodgingCosts + flightCosts}</p>
             <p class="lodging-costs">Lodging: $${lodgingCosts}</p>
@@ -36,6 +44,8 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
 // QUERY SELECTORS
 
 const tripGrid = document.getElementById('tripGrid');
+const travelerGreeting = document.getElementById('travelerGreeting');
+const totalTravelCosts = document.getElementById('totalTravelCosts');
 
 export default updateDOM;
 export {};

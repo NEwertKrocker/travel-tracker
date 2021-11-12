@@ -1,16 +1,29 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import '_reset';
 
-* {
-  border: 1px solid blue;
+// * {
+//   border: 1px solid blue;
+// }
+
+header {
+  background-image: url('../images/uncharted-map.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 body {
-  background: $primary-background;
+  background: linear-gradient(0.25turn, $brown, $earth);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.top-banner {
+  display: flex;
+  justify-content: space-between;
+  min-height: 150px;
+  color: white;
+  align-items: flex-end;
 }
 
 .trip-grid {
@@ -18,11 +31,74 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   align-items: center;
+  margin: 20px;
 }
 
 .trip-card {
   display: block;
   height: 400px;
-  width: 400px;
+  width: auto;
   background-color: white;
+  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
+  border-radius: $slight-curve;
+}
+
+.trip-info {
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.destination-photo {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-position: center;
+  border-radius: $slight-curve $slight-curve 0px 0px;
+}
+
+.destination-name {
+  align-self: flex-end;
+  position: relative;
+  color: white;
+  font-size: 24px;
+  font-family: $montserrat;
+  padding-right: 5px;
+}
+
+.trip-dates {
+  align-self: flex-end;
+  color: white;
+  font-family: $montserrat;
+  padding: 5px;
+  position: relative;
+}
+
+.destination-photo::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: $slight-curve;
+}
+
+#travelerGreeting {
+  margin-bottom: 1vh;
+  font-family: $montserrat;
+  font-size: 32px;
+}
+
+#totalTravelCosts {
+  align-self: flex-start;
+  margin-top: 2vh;
+}
+
+#travelerGreeting,
+#totalTravelCosts {
+  background: linear-gradient(0.25turn, $charcoal, $gunmetal);
+  border-radius: $slight-curve;
+  padding: 4px 10px;
 }
