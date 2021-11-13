@@ -9,6 +9,7 @@ import Traveler from './Traveler';
 import Destinations from './Destinations';
 import Trips from './Trips';
 import TravelerRepo from './TravelerRepo';
+import dayjs from 'dayjs'
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
