@@ -16,25 +16,32 @@
   </nav>
 </header>
 <body>
+  <!-- new trip request modal -->
+  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title">
+          Adventure awaits!
+        </h2>
+        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+      </header>
+      <main class="modal__content" id="modal-1-content">
+        <p>
+          Try hitting the <code>tab</code> key and notice how the focus stays within the modal itself. Also, <code>esc</code> to close modal.
+        </p>
+      </main>
+      <footer class="modal__footer">
+        <button class="modal__btn modal__btn-primary">Let's go!</button>
+        <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">On second thought...</button>
+      </footer>
+    </div>
+  </div>
+</div>
   <h2 id="yourTrips">YOUR TRIPS</h2>
   <section class="trip-grid" id="tripGrid">
 <!-- generated trip cards go here -->
   </section>
-  <div id="modal-1" aria-hidden="true">
-    <div tabindex="-1" data-micromodal-close>
-      <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
-        <header>
-          <h2 id="modal-1-title">
-            Modal Title
-          </h2>
-          <button aria-label="Close modal" data-micromodal-close></button>
-        </header>
-        <div id="modal-1-content">
-          Modal Content
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 

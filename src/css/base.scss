@@ -1,6 +1,7 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
 @import '_reset';
+@import '_modalStyle';
 
 // * {
 //   border: 1px solid blue;
@@ -96,6 +97,14 @@ body {
 
 .next-adventure {
   padding-bottom: 30px;
+}
+
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
 }
 
 #travelerGreeting {

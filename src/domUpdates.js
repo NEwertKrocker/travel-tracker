@@ -1,5 +1,6 @@
 import { currentTraveler } from './scripts.js';
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import MicroModal from 'micromodal';
 
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations);
@@ -26,7 +27,6 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
     const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip);
     const destinationImage = destination[0].image;
     const tripEnd = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD');
-    console.log(tripEnd);
     tripGrid.innerHTML += `<article class="trip-card">
           <div class="destination-photo" style="background-image: url(${destinationImage});">
               <p class="trip-shader">
@@ -51,11 +51,12 @@ const addTripRequestCard = (currentTraveler, trips, destinations) => {
         <p class="trip-shader">
         <h1 class="destination-name next-adventure">Your next adventure</h1>
       </div>
-      <div class="new-trip-button" id="newTripButton">
+      <div class="new-trip-button" id="newTripButton" data-micromodal-trigger="modal-1">
         <img src="./images/old-compasses.svg" id="compassesIcon">
         <h2>PLAN A NEW TRIP</h2>
       </div>
     </article>`
+    MicroModal.init();
 }
 
 // QUERY SELECTORS

@@ -9,7 +9,8 @@ import Traveler from './Traveler';
 import Destinations from './Destinations';
 import Trips from './Trips';
 import TravelerRepo from './TravelerRepo';
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import MicroModal from 'micromodal';
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
@@ -19,6 +20,8 @@ import './images/uncharted-map.jpg';
 import './images/earthfromspace.jpg';
 import './images/old-compasses.svg';
 import './images/compass.svg';
+
+MicroModal.init();
 
 let travelerRepoData;
 let currentTraveler;
