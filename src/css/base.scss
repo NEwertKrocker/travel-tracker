@@ -13,7 +13,9 @@ header {
 }
 
 body {
-  background: linear-gradient(0.25turn, $brown, $earth);
+  background: url('../images/compass.svg') right bottom no-repeat, linear-gradient(0.25turn, $brown, $earth) left top repeat;
+  background-size: 400px 200px, cover;
+  background-origin: content-box, padding-box;
   display: flex;
   flex-direction: column;
 }
@@ -85,6 +87,17 @@ body {
   border-radius: $slight-curve;
 }
 
+.new-trip-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $montserrat;
+}
+
+.next-adventure {
+  padding-bottom: 30px;
+}
+
 #travelerGreeting {
   margin-bottom: 1vh;
   font-family: $montserrat;
@@ -101,4 +114,17 @@ body {
   background: linear-gradient(0.25turn, $charcoal, $gunmetal);
   border-radius: $slight-curve;
   padding: 4px 10px;
+}
+
+#yourTrips {
+  font-family: $montserrat;
+  color: white;
+  font-size: 32px;
+  margin: 20px 20px 0px 40px;
+}
+
+#compassesIcon {
+  height: 12vh;
+  width: 24vh;
+  margin-top: 3vh;
 }
