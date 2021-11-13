@@ -1,4 +1,5 @@
 import { currentTraveler } from './scripts.js';
+import dayjs from 'dayjs'
 
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations);
@@ -24,11 +25,13 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
     const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip);
     const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip);
     const destinationImage = destination[0].image;
+    const tripEnd = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD');
+    console.log(tripEnd);
     tripGrid.innerHTML += `<article class="trip-card">
           <div class="destination-photo" style="background-image: url(${destinationImage});">
               <p class="trip-shader">
               <h1 class="destination-name">${destination[0].destination}</h1>
-              <p class="trip-dates">${trip.date}</p>
+              <p class="trip-dates">${trip.date} - ${tripEnd}</p>
           </div>
           <div class="trip-info">
             <h2>COSTS:</h2>
