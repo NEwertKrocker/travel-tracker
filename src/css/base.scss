@@ -85,6 +85,13 @@ body {
   border-radius: $slight-curve;
 }
 
+.new-trip-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $montserrat;
+}
+
 #travelerGreeting {
   margin-bottom: 1vh;
   font-family: $montserrat;
@@ -101,4 +108,10 @@ body {
   background: linear-gradient(0.25turn, $charcoal, $gunmetal);
   border-radius: $slight-curve;
   padding: 4px 10px;
+}
+
+#compassesIcon {
+  height: 12vh;
+  width: 24vh;
+  margin-top: 3vh;
 }

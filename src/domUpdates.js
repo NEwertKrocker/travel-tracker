@@ -1,7 +1,8 @@
 import { currentTraveler } from './scripts.js';
 
 const updateDOM = (currentTraveler, trips, destinations) => {
-  buildTravelCardGrid(currentTraveler, trips, destinations)
+  buildTravelCardGrid(currentTraveler, trips, destinations);
+  addTripRequestCard(currentTraveler, trips, destinations);
   displayGreeting(currentTraveler);
   displayYTDCosts(currentTraveler, trips, destinations);
 };
@@ -39,6 +40,19 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
           </div>
       </article>`
   })
+}
+
+const addTripRequestCard = (currentTraveler, trips, destinations) => {
+  tripGrid.innerHTML += `<article class="trip-card">
+      <div class="destination-photo" style="background-image: url('./images/earthfromspace.jpg');">
+        <p class="trip-shader">
+        <h1 class="destination-name">Your next adventure...</h1>
+      </div>
+      <div class="new-trip-button" id="newTripButton">
+        <img src="./images/old-compasses.svg" id="compassesIcon">
+        <h2>PLAN A NEW TRIP</h2>
+      </div>
+    </article>`
 }
 
 // QUERY SELECTORS
