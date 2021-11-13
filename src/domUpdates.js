@@ -43,10 +43,10 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
 }
 
 const addTripRequestCard = (currentTraveler, trips, destinations) => {
-  tripGrid.innerHTML += `<article class="trip-card">
+  tripGrid.innerHTML += `<article class="trip-card plan-trip-card">
       <div class="destination-photo" style="background-image: url('./images/earthfromspace.jpg');">
         <p class="trip-shader">
-        <h1 class="destination-name">Your next adventure...</h1>
+        <h1 class="destination-name next-adventure">Your next adventure</h1>
       </div>
       <div class="new-trip-button" id="newTripButton">
         <img src="./images/old-compasses.svg" id="compassesIcon">

@@ -17,6 +17,7 @@ import './css/base.scss';
 import './images/uncharted-map.jpg';
 import './images/earthfromspace.jpg';
 import './images/old-compasses.svg';
+import './images/compass.svg';
 
 let travelerRepoData;
 let currentTraveler;
