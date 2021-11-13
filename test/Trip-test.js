@@ -49,11 +49,51 @@ describe('Trips', () => {
   it('should be a function', () => {
     expect(Trips).to.be.a('function');
   });
+  it('should be store trips which each have an ID number', () => {
+    expect(trips.dataset[0].id).to.equal(1);
+    expect(trips.dataset[1].id).to.equal(2);
+    expect(trips.dataset[2].id).to.equal(undefined);
+  });
+  it('should be store trips which each have an associated userID', () => {
+    expect(trips.dataset[0].userID).to.equal(44);
+    expect(trips.dataset[1].userID).to.equal(35);
+    expect(trips.dataset[2].userID).to.equal(undefined);
+  });
+  it('should be store trips which each have an associated destinationID', () => {
+    expect(trips.dataset[0].destinationID).to.equal(49);
+    expect(trips.dataset[1].destinationID).to.equal(25);
+    expect(trips.dataset[2].destinationID).to.equal(undefined);
+  });
+  it('should keep track of how many travelers are on each trip', () => {
+    expect(trips.dataset[0].travelers).to.equal(1);
+    expect(trips.dataset[1].travelers).to.equal(5);
+    expect(trips.dataset[2].travelers).to.equal(undefined);
+  });
+  it('should keep track of each trip\'s start date', () => {
+    expect(trips.dataset[0].date).to.equal("2022/09/16");
+    expect(trips.dataset[1].date).to.equal("2022/10/04");
+    expect(trips.dataset[2].date).to.equal(undefined);
+  });
+  it('should keep track of how long each trip is in days', () => {
+    expect(trips.dataset[0].duration).to.equal(8);
+    expect(trips.dataset[1].duration).to.equal(18);
+    expect(trips.dataset[2].duration).to.equal(undefined);
+  });
+  it('should keep track of each trip\'s status', () => {
+    expect(trips.dataset[0].status).to.equal("approved");
+    expect(trips.dataset[1].status).to.equal("approved");
+    expect(trips.dataset[2].status).to.equal(undefined);
+  });
+  it('should be able to hold an array of suggested activities for each trip', () => {
+    expect(trips.dataset[0].suggestedActivities).to.deep.equal([]);
+    expect(trips.dataset[1].suggestedActivities).to.deep.equal([]);
+    expect(trips.dataset[2].suggestedActivities).to.equal(undefined);
+  });
   it('should be able to filter trips by user ID', () => {
     expect(trips.getAllUserTrips(44)).to.deep.equal([trip1]);
     expect(trips.getAllUserTrips(5)).to.deep.equal([]);
   });
   it('should be able to total a user\'s total travel costs for the year', () => {
-    expect(trips.calculateTravelCostYTD(35, destinations)).to.equal(4150);
+    expect(trips.calculateTravelCostYTD(35, destinations)).to.equal(4565);
   })
 });
