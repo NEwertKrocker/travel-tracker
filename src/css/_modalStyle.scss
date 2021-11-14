@@ -47,7 +47,14 @@
   border: 0;
 }
 
-.modal__header .modal__close:before { content: "\2715"; }
+.modal__header .modal__close:before {
+  font-size: 24px;
+  content: "\2715";
+  background-color: white;
+  border: 8px solid white;
+  border-radius: 50%;
+  padding: 0px 5px;
+}
 
 .modal__content {
   margin-top: 2rem;
@@ -64,7 +71,7 @@
   padding-bottom: 5px;
   background-color: #e6e6e6;
   color: rgba(0,0,0,.8);
-  border-radius: .25rem;
+  border-radius: $slight-curve;
   border-style: none;
   border-width: 0;
   cursor: pointer;
@@ -72,7 +79,7 @@
   text-transform: none;
   overflow: visible;
   line-height: 1.15;
-  margin: 0;
+  margin: 5px;
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -93,9 +100,6 @@
   color: #fff;
 }
 
-/**************************\
-  Demo Animation Style
-\**************************/
 @keyframes mmfadeIn {
     from { opacity: 0; }
       to { opacity: 1; }

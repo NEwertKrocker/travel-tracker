@@ -21,6 +21,11 @@ body {
   flex-direction: column;
 }
 
+article:hover,
+article:focus {
+  transform: scale(1.05, 1.05);
+}
+
 .top-banner {
   display: flex;
   justify-content: space-between;
@@ -130,6 +135,10 @@ body {
   color: white;
   font-size: 32px;
   margin: 20px 20px 0px 40px;
+}
+
+#planTripCard {
+
 }
 
 #compassesIcon {
