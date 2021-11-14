@@ -27,9 +27,19 @@
         <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
       </header>
       <main class="modal__content" id="modal-1-content">
-        <p>
-          Try hitting the <code>tab</code> key and notice how the focus stays within the modal itself. Also, <code>esc</code> to close modal.
-        </p>
+        <h3> Let's make a plan for a new adventure! </h3>
+        <form>
+          <p><label for="date of departure">When would you like to leave?</label>
+          <input type="text" placeholder="MM/DD/YYYY"></input></p>
+          <p><label for="duration">How many days will this trip be?</label>
+          <input type="number" placeholder="1" min="1" max="365" value="1"></input></p>
+          <p><label for="number of travelers">How many people will be traveling?</label>
+          <input type="number" placeholder="1" min="1" max="365" value="1"></input></p>
+          <p><label for="destination">Where would you like to get away to?</label>
+          <select id="destinationSelector" name="destination selector" placeholder="I've been dreaming of..." size="4">
+            <option value=null>I've been dreaming of...</option>
+            <!-- generate destination list here -->
+          </select></p>
       </main>
       <footer class="modal__footer">
         <button class="modal__btn modal__btn-primary">Let's go!</button>
