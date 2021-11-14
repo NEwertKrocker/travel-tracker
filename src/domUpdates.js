@@ -1,4 +1,4 @@
-import { currentTraveler } from './scripts.js';
+import { currentTraveler, trips, destinations } from './scripts.js';
 import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
 
@@ -7,6 +7,7 @@ const updateDOM = (currentTraveler, trips, destinations) => {
   addTripRequestCard(currentTraveler, trips, destinations);
   displayGreeting(currentTraveler);
   displayYTDCosts(currentTraveler, trips, destinations);
+  populateDestinationSelector(destinations);
 };
 
 const displayGreeting = (currentTraveler) => {
@@ -59,8 +60,39 @@ const addTripRequestCard = (currentTraveler, trips, destinations) => {
     MicroModal.init();
 }
 
+const populateDestinationSelector = (destinations) => {
+  destinations.dataset.forEach((destination) =>
+    destinationSelector.innerHTML += `<option value="${destination.id}"">${destination.destination}</option>`
+  )
+};
+
+const requestNewTrip = () => {
+  let parsedDepartureDate = dayjs(departureDateSelector.value).format('YYYY/MM/DD');
+  const newTrip = {
+    id: trips.dataset.length + 1,
+    userID: currentTraveler.id,
+    destinationID: parseInt(destinationSelector.value),
+    travelers: parseInt(tripTravelersSelector.value),
+    date: parsedDepartureDate,
+    duration: tripDurationSelector.value,
+    status: 'pending',
+    suggestedActivities: []
+  };
+  console.log(newTrip, "<<<< newTrip before post");
+  return fetch('http://localhost:3001/api/v1/trips', {
+      method: 'POST',
+      body: JSON.stringify(newTrip),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data, "<<<<< data after post"))
+    .catch(err => console.log(err))
+};
+
 const checkKey = (event) => {
-  if(event.key === 'Space'){
+  if(event.key === ' '){
     openModal(event);
   } else if(event.key === 'Enter') {
     openModal(event);
@@ -79,10 +111,19 @@ const tripGrid = document.getElementById('tripGrid');
 const travelerGreeting = document.getElementById('travelerGreeting');
 const totalTravelCosts = document.getElementById('totalTravelCosts');
 const planTripCard = document.getElementById('planTripCard');
+const destinationSelector = document.getElementById('destinationSelector');
+const departureDateSelector = document.getElementById('departureDateSelector');
+const tripDurationSelector = document.getElementById('tripDurationSelector');
+const tripTravelersSelector = document.getElementById('tripTravelersSelector');
+const submitTripRequestButton = document.getElementById('submitTripRequestButton');
 
 // EVENT LISTENERS
 
-tripGrid.addEventListener('keydown', checkKey);
+tripGrid.addEventListener('keyup', checkKey);
+submitTripRequestButton.addEventListener('click', () => {
+  requestNewTrip();
+  MicroModal.close('modal-1');
+})
 
 
 export default updateDOM;

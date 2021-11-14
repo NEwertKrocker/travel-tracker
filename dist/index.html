@@ -30,20 +30,20 @@
         <h3> Let's make a plan for a new adventure! </h3>
         <form>
           <p><label for="date of departure">When would you like to leave?</label>
-          <input type="text" placeholder="MM/DD/YYYY"></input></p>
+          <input type="text" id="departureDateSelector" placeholder="MM/DD/YYYY"></input></p>
           <p><label for="duration">How many days will this trip be?</label>
-          <input type="number" placeholder="1" min="1" max="365" value="1"></input></p>
+          <input type="number" id="tripDurationSelector" placeholder="1" min="1" max="365" value="1"></input></p>
           <p><label for="number of travelers">How many people will be traveling?</label>
-          <input type="number" placeholder="1" min="1" max="365" value="1"></input></p>
+          <input type="number" id="tripTravelersSelector" placeholder="1" min="1" max="365" value="1"></input></p>
           <p><label for="destination">Where would you like to get away to?</label>
-          <select id="destinationSelector" name="destination selector" placeholder="I've been dreaming of..." size="4">
+          <select id="destinationSelector" name="destination selector" placeholder="I've been dreaming of...">
             <option value=null>I've been dreaming of...</option>
             <!-- generate destination list here -->
           </select></p>
       </main>
       <footer class="modal__footer">
-        <button class="modal__btn modal__btn-primary">Let's go!</button>
-        <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">On second thought...</button>
+        <button type="button" id="submitTripRequestButton" class="modal__btn modal__btn-primary">Let's go!</button>
+        <button type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">On second thought...</button>
       </footer>
     </div>
   </div>
