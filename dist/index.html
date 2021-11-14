@@ -16,11 +16,43 @@
   </nav>
 </header>
 <body>
+  <!-- new trip request modal -->
+  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title">
+          Adventure awaits!
+        </h2>
+        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+      </header>
+      <main class="modal__content" id="modal-1-content">
+        <h3> Let's make a plan for a new adventure! </h3>
+        <form id="newTripRequestForm">
+          <p><label for="date of departure">When would you like to leave?</label>
+          <input type="text" id="departureDateSelector" placeholder="MM/DD/YYYY"></input></p>
+          <p><label for="duration">How many days will this trip be?</label>
+          <input type="number" id="tripDurationSelector" placeholder="1" min="1" max="365" value="1"></input></p>
+          <p><label for="number of travelers">How many people will be traveling?</label>
+          <input type="number" id="tripTravelersSelector" placeholder="1" min="1" max="365" value="1"></input></p>
+          <p><label for="destination">Where would you like to get away to?</label>
+          <select id="destinationSelector" name="destination selector" placeholder="I've been dreaming of...">
+            <option value=null>I've been dreaming of...</option>
+            <!-- generate destination list here -->
+          </select></p>
+          <h3 id="newTripCost"></h3>
+      </main>
+      <footer class="modal__footer">
+        <button type="button" id="submitTripRequestButton" class="modal__btn modal__btn-primary">Let's go!</button>
+        <button type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">On second thought...</button>
+      </footer>
+    </div>
+  </div>
+</div>
   <h2 id="yourTrips">YOUR TRIPS</h2>
   <section class="trip-grid" id="tripGrid">
 <!-- generated trip cards go here -->
   </section>
-
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 

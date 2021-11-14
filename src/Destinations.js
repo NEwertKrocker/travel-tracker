@@ -4,13 +4,13 @@ class Destinations extends DataHandler {
   constructor(dataset) {
     super(dataset)
   }
-  getTotalLodgingCosts(id, trip){
+  getTotalLodgingCosts(id, tripDuration){
     this.getDataByID(id);
-    return this.filteredDataByID[0].estimatedLodgingCostPerDay * trip.duration;
+    return this.filteredDataByID[0].estimatedLodgingCostPerDay * tripDuration;
   }
-  getTotalFlightCosts(id, trip){
+  getTotalFlightCosts(id, tripTravelers){
     this.getDataByID(id);
-    return this.filteredDataByID[0].estimatedFlightCostPerPerson * trip.travelers;
+    return this.filteredDataByID[0].estimatedFlightCostPerPerson * tripTravelers;
   }
 }
 
