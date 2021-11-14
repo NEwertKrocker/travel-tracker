@@ -12,8 +12,8 @@ class Trips extends DataHandler {
     this.getDataByUserID(userID);
     let yearlyCost = this.filteredDataByUserID.reduce((totalCost, trip) => {
         const destination = destinations.getDataByID(trip.destinationID);
-        const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip);
-        const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip);
+        const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip.duration);
+        const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip.travelers);
         totalCost += lodgingCosts + flightCosts
         return totalCost
     }, 0)

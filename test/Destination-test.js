@@ -74,12 +74,12 @@ describe('Destinations', () => {
     expect(destinations.dataset[2].alt).to.equal(undefined);
   });
   it('should be able to calculate total lodging cost for a trip', () => {
-    expect(destinations.getTotalLodgingCosts(1, trip)).to.equal(1260);
-    expect(destinations.getTotalLodgingCosts(2, trip)).to.equal(1800);
+    expect(destinations.getTotalLodgingCosts(1, trip.duration)).to.equal(1260);
+    expect(destinations.getTotalLodgingCosts(2, trip.duration)).to.equal(1800);
   });
   it('should be able to calculate total flight cost for a trip', () => {
-    expect(destinations.getTotalFlightCosts(1, trip)).to.equal(2000);
-    expect(destinations.getTotalFlightCosts(2, trip)).to.equal(3900);
+    expect(destinations.getTotalFlightCosts(1, trip.travelers)).to.equal(2000);
+    expect(destinations.getTotalFlightCosts(2, trip.travelers)).to.equal(3900);
   });
 
 });

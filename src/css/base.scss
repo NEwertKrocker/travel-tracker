@@ -137,8 +137,15 @@ article:focus {
   margin: 20px 20px 0px 40px;
 }
 
-#planTripCard {
+#newTripRequestForm {
+  display: flex;
+  flex-direction: column;
+}
 
+#newTripCost {
+  font-family: $montserrat;
+  font-size: 30px;
+  align-self: flex-end;
 }
 
 #compassesIcon {

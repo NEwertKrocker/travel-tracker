@@ -28,7 +28,7 @@
       </header>
       <main class="modal__content" id="modal-1-content">
         <h3> Let's make a plan for a new adventure! </h3>
-        <form>
+        <form id="newTripRequestForm">
           <p><label for="date of departure">When would you like to leave?</label>
           <input type="text" id="departureDateSelector" placeholder="MM/DD/YYYY"></input></p>
           <p><label for="duration">How many days will this trip be?</label>
@@ -40,6 +40,7 @@
             <option value=null>I've been dreaming of...</option>
             <!-- generate destination list here -->
           </select></p>
+          <h3 id="newTripCost"></h3>
       </main>
       <footer class="modal__footer">
         <button type="button" id="submitTripRequestButton" class="modal__btn modal__btn-primary">Let's go!</button>
