@@ -3,10 +3,6 @@
 @import '_reset';
 @import '_modalStyle';
 
-// * {
-//   border: 1px solid blue;
-// }
-
 header {
   background-image: url('../images/uncharted-map.jpg');
   background-position: center;
@@ -24,6 +20,35 @@ body {
 article:hover,
 article:focus {
   transform: scale(1.05, 1.05);
+}
+
+.page-spacer {
+  height: 30vh;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $montserrat;
+  color: black;
+  border: 5px solid white;
+  margin: 5px 20% 10px;
+  background-color: white;
+  border-radius: $slight-curve;
+}
+
+.sign-in-button {
+  font-family: $montserrat;
+  font-size: 18px;
+  padding: 5px 10px;
+  background-color: $charcoal;
+  color: white;
+  border-radius: $slight-curve;
+  border-style: none;
+  border-width: 0;
+  cursor: pointer;
+  margin: 5px;
 }
 
 .top-banner {
@@ -125,6 +150,10 @@ article:focus {
   border-radius: $slight-curve;
 }
 
+.hidden {
+  display: none;
+}
+
 #travelerGreeting {
   margin-bottom: 1vh;
   font-family: $montserrat;
@@ -141,6 +170,16 @@ article:focus {
   background: linear-gradient(0.25turn, $charcoal, $gunmetal);
   border-radius: $slight-curve;
   padding: 4px 10px;
+}
+
+#password {
+  padding-left: 2px;
+}
+
+#loginError {
+  color: $bright-red;
+  font-family: sans-serif;
+
 }
 
 #yourTrips {
