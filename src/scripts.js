@@ -76,4 +76,4 @@ const getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length)
 };
 
-export {currentTraveler, trips, destinations};
+export {currentTraveler, trips, destinations, getAPICalls};

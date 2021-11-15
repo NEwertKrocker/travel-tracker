@@ -1,4 +1,4 @@
-import { currentTraveler, trips, destinations } from './scripts.js';
+import { currentTraveler, trips, destinations, getAPICalls } from './scripts.js';
 import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
 
@@ -23,7 +23,8 @@ const displayGreeting = (currentTraveler) => {
 const displayYTDCosts = (currentTraveler, trips, destinations) => {
   totalTravelCosts.innerHTML = '';
   let totalCosts = trips.calculateTravelCostYTD(currentTraveler.id, destinations);
-  totalTravelCosts.innerHTML += `Total travel costs this year: <br> $${totalCosts}`
+  let costCurrency = Number.parseInt(totalCosts).toFixed(2);
+  totalTravelCosts.innerHTML += `Total travel costs this year: <br> $${costCurrency}`
 }
 
 const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
@@ -162,7 +163,7 @@ submitTripRequestButton.addEventListener('click', () => {
   checkFormFields();
   requestNewTrip();
   clearTripGrid();
-  updateDOM(currentTraveler, trips, destinations);
+  let timeoutID = setTimeout(getAPICalls, 200); // is this always gonna be enough?
   MicroModal.close('modal-1');
 })
 
