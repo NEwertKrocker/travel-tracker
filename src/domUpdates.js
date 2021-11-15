@@ -1,4 +1,4 @@
-import { currentTraveler, trips, destinations } from './scripts.js';
+import { currentTraveler, trips, destinations, getAPICalls } from './scripts.js';
 import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
 
@@ -10,14 +10,21 @@ const updateDOM = (currentTraveler, trips, destinations) => {
   populateDestinationSelector(destinations);
 };
 
+const clearTripGrid = () => {
+  tripGrid.innerHTML = ``;
+  console.log("Grid cleared!");
+}
+
 const displayGreeting = (currentTraveler) => {
   let greeting = `Welcome, ${currentTraveler.name}!`
   travelerGreeting.innerText = greeting.toUpperCase();
 }
 
 const displayYTDCosts = (currentTraveler, trips, destinations) => {
+  totalTravelCosts.innerHTML = '';
   let totalCosts = trips.calculateTravelCostYTD(currentTraveler.id, destinations);
-  totalTravelCosts.innerHTML += `<br> $${totalCosts}`
+  let costCurrency = Number.parseInt(totalCosts).toFixed(2);
+  totalTravelCosts.innerHTML += `Total travel costs this year: <br> $${costCurrency}`
 }
 
 const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
@@ -28,9 +35,12 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
     const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip.travelers);
     const destinationImage = destination[0].image;
     const tripEnd = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD');
+    let pendingNotice = ``;
+    if(trip.status === 'pending'){pendingNotice = `PENDING`};
     tripGrid.innerHTML += `<article class="trip-card" tabindex="0">
           <div class="destination-photo" style="background-image: url(${destinationImage});">
               <p class="trip-shader">
+              <p class="${pendingNotice}">${pendingNotice}
               <h1 class="destination-name">${destination[0].destination}</h1>
               <p class="trip-dates">${trip.date} - ${tripEnd}</p>
           </div>
@@ -61,6 +71,7 @@ const addTripRequestCard = (currentTraveler, trips, destinations) => {
 }
 
 const populateDestinationSelector = (destinations) => {
+  destinationSelector.innerHTML = ``;
   destinations.dataset.forEach((destination) =>
     destinationSelector.innerHTML += `<option value="${destination.id}"">${destination.destination}</option>`
   )
@@ -151,6 +162,8 @@ tripTravelersSelector.addEventListener('input', checkFormFields);
 submitTripRequestButton.addEventListener('click', () => {
   checkFormFields();
   requestNewTrip();
+  clearTripGrid();
+  let timeoutID = setTimeout(getAPICalls, 200); // is this always gonna be enough?
   MicroModal.close('modal-1');
 })
 

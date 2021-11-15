@@ -112,6 +112,19 @@ article:focus {
   display: block;
 }
 
+.PENDING {
+  position: absolute;
+  color: $bright-red;
+  font-size: 32px;
+  font-family: $montserrat;
+  padding: 3px;
+  margin-left: 10px;
+  margin-bottom: 100px;
+  transform: rotate(0.95turn);
+  border: 6px solid $bright-red;
+  border-radius: $slight-curve;
+}
+
 #travelerGreeting {
   margin-bottom: 1vh;
   font-family: $montserrat;
