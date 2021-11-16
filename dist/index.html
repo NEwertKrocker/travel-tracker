@@ -51,7 +51,7 @@
             <option value=null>I've been dreaming of...</option>
             <!-- generate destination list here -->
           </select></p>
-          <h3 id="newTripCost"></h3>
+          <h3 class="new-trip-cost" id="newTripCost"></h3>
       </main>
       <footer class="modal__footer">
         <button type="button" id="submitTripRequestButton" class="modal__btn modal__btn-primary">Let's go!</button>
@@ -65,6 +65,9 @@
   <section class="trip-grid" id="tripGrid">
     <!-- generated trip cards go here -->
   </section>
+  <span class="footer-bar">
+    <button type="button" id="signOutButton" class="sign-out">Sign Out</button>
+  </span>
 </div>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
 <script src="bundle.js"></script>

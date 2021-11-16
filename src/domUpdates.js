@@ -3,10 +3,16 @@ import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
 
 const validateLogin = () => {
+  let parsedID;
   if(userName.value.includes('traveler') && password.value === 'travel'){
     loginError.text = ``;
     let userID = userName.value.replace('traveler', '');
-    let parsedID = parseInt(userID);
+    parsedID = parseInt(userID)
+  } else {
+    loginError.innerText = `Username and password not recognized! Please try again.`
+  }
+  console.log(parsedID);
+  if(parsedID > 0 && parsedID <= 50){
     buildTraveler(travelerRepo.dataset[parsedID - 1]);
     updateDOM(currentTraveler, trips, destinations);
     showMainPage();
@@ -19,6 +25,15 @@ const showMainPage = () => {
   pageSpacer.classList.toggle("hidden");
   mainPage.classList.toggle("hidden");
   loginSection.classList.toggle("hidden");
+}
+
+const signOutUser = () => {
+  travelerGreeting.innerText = `TRAVEL TRACKER`;
+  totalTravelCosts.innerHTML = '';
+  userName.value = '';
+  password.value = '';
+  showMainPage();
+  clearTripGrid();
 }
 
 const updateDOM = (currentTraveler, trips, destinations) => {
@@ -121,15 +136,23 @@ const requestNewTrip = () => {
 };
 
 const checkFormFields = () => {
-  if(!dayjs(departureDateSelector.value).isValid()){
-    newTripCost.innerText = "Please enter a valid date!"
+  if(!dayjs(departureDateSelector.value).isAfter(dayjs())){
+    newTripCost.classList.add("error");
+    newTripCost.innerText = "Alas, you cannot leave for a trip yesterday."
+  } else if (!dayjs(departureDateSelector.value).isValid()){
+    newTripCost.classList.add("error");
+    newTripCost.innerText = "Please enter a valid date."
   } else if (tripDurationSelector.value <= 0){
+    newTripCost.classList.add("error");
     newTripCost.innerText = "Please enter a valid trip duration."
   } else if (tripTravelersSelector.value <= 0){
+    newTripCost.classList.add("error");
     newTripCost.innerText = "Isn't anyone going on this trip?"
   } else if (destinationSelector.value === 'null'){
+    newTripCost.classList.add("error");
     newTripCost.innerText = "Please select a valid destination."
   } else {
+    newTripCost.classList.remove("error");
     estimateTripCost(destinations);
   }
 }
@@ -140,7 +163,8 @@ const estimateTripCost = (destinations) => {
   let destination = parseInt(destinationSelector.value);
   let estimatedTripCost = Math.floor(destinations.getTotalLodgingCosts(destination, duration)
     + destinations.getTotalFlightCosts(destination, travelers) * 11) / 10;
-    newTripCost.innerText = `Cost estimate: $${estimatedTripCost}`
+  let costCurrency = Number.parseInt(estimatedTripCost).toFixed(2);
+    newTripCost.innerText = `Cost estimate: $${costCurrency}`
 }
 
 const checkKey = (event) => {
@@ -177,20 +201,24 @@ const password = document.getElementById('password');
 const loginError = document.getElementById('loginError');
 const signInButton = document.getElementById('signInButton');
 const mainPage = document.getElementById('mainPage');
+const signOutButton = document.getElementById('signOutButton');
 
 // EVENT LISTENERS
 
 tripGrid.addEventListener('keydown', checkKey);
 signInButton.addEventListener('click', validateLogin);
+signOutButton.addEventListener('click', signOutUser);
 destinationSelector.addEventListener('input', checkFormFields);
 tripDurationSelector.addEventListener('input', checkFormFields);
 tripTravelersSelector.addEventListener('input', checkFormFields);
 submitTripRequestButton.addEventListener('click', () => {
   checkFormFields();
-  requestNewTrip();
-  clearTripGrid();
-  let timeoutID = setTimeout(getAPICalls, 200);
-  MicroModal.close('modal-1');
+  if(!newTripCost.classList.contains("error")){
+    requestNewTrip();
+    clearTripGrid();
+    let timeoutID = setTimeout(getAPICalls, 200);
+    MicroModal.close('modal-1');
+  }
 })
 
 export default updateDOM;
