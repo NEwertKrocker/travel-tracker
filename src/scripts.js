@@ -33,19 +33,15 @@ let trips;
 
 const buildTravelerRepo = (travelerRepoData) => {
   travelerRepo = new TravelerRepo(travelerRepoData);
-  console.log(travelerRepo);
 };
 const buildTraveler = (travelerData) => {
   currentTraveler = new Traveler(travelerData);
-  console.log(currentTraveler);
 };
 const buildDestinations = (destinationsData) => {
   destinations = new Destinations(destinationsData);
-  console.log(destinations);
 };
 const buildTrips = (tripsData) => {
   trips = new Trips(tripsData);
-  console.log(trips);
 };
 
 const getAPICalls = () => {

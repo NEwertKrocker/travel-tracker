@@ -11,7 +11,6 @@ const validateLogin = () => {
   } else {
     loginError.innerText = `Username and password not recognized! Please try again.`
   }
-  console.log(parsedID);
   if(parsedID > 0 && parsedID <= 50){
     buildTraveler(travelerRepo.dataset[parsedID - 1]);
     updateDOM(currentTraveler, trips, destinations);
@@ -122,7 +121,6 @@ const requestNewTrip = () => {
     status: 'pending',
     suggestedActivities: []
   };
-  console.log(newTrip, "<<<< newTrip before post");
   return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
       body: JSON.stringify(newTrip),
@@ -131,7 +129,6 @@ const requestNewTrip = () => {
       }
     })
     .then(response => response.json())
-    .then(data => console.log(data, "<<<<< data after post"))
     .catch(err => console.log(err))
 };
 

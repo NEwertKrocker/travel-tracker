@@ -23,7 +23,6 @@ class Trips extends DataHandler {
     let currentYearTrips = this.filteredDataByUserID.filter((trip) => {
       return dayjs(trip.date).isAfter(dayjs("2021-01-01"));
     })
-    console.log(currentYearTrips);
     let yearlyCost = currentYearTrips.reduce((totalCost, trip) => {
         const destination = destinations.getDataByID(trip.destinationID);
         const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip.duration);
