@@ -3,10 +3,16 @@ import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
 
 const validateLogin = () => {
+  let parsedID;
   if(userName.value.includes('traveler') && password.value === 'travel'){
     loginError.text = ``;
     let userID = userName.value.replace('traveler', '');
-    let parsedID = parseInt(userID);
+    parsedID = parseInt(userID)
+  } else {
+    loginError.innerText = `Username and password not recognized! Please try again.`
+  }
+  console.log(parsedID);
+  if(parsedID > 0 && parsedID <= 50){
     buildTraveler(travelerRepo.dataset[parsedID - 1]);
     updateDOM(currentTraveler, trips, destinations);
     showMainPage();
