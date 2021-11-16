@@ -11,11 +11,7 @@ import Trips from './Trips';
 import TravelerRepo from './TravelerRepo';
 import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/uncharted-map.jpg';
 import './images/earthfromspace.jpg';
 import './images/old-compasses.svg';
