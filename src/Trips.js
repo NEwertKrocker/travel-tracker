@@ -2,10 +2,10 @@ import DataHandler from './DataHandler';
 import dayjs from 'dayjs';
 
 class Trips extends DataHandler {
-  constructor(dataset){
+  constructor(dataset) {
     super(dataset)
   }
-  getAllUserTrips(userID){
+  getAllUserTrips(userID) {
     this.getDataByUserID(userID);
     this.filteredDataByUserID.sort((a, b) => {
       if (dayjs(a.date).isBefore(dayjs(b.date))) {
@@ -18,18 +18,17 @@ class Trips extends DataHandler {
     })
     return this.filteredDataByUserID;
   }
-  calculateTravelCostYTD(userID, destinations){
+  calculateTravelCostYTD(userID, destinations) {
     this.getAllUserTrips(userID);
     let currentYearTrips = this.filteredDataByUserID.filter((trip) => {
       return dayjs(trip.date).isAfter(dayjs("2021-01-01"));
     })
-    console.log(currentYearTrips);
     let yearlyCost = currentYearTrips.reduce((totalCost, trip) => {
-        const destination = destinations.getDataByID(trip.destinationID);
-        const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip.duration);
-        const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip.travelers);
-        totalCost += lodgingCosts + flightCosts
-        return totalCost
+      const destination = destinations.getDataByID(trip.destinationID);
+      const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip.duration);
+      const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip.travelers);
+      totalCost += lodgingCosts + flightCosts
+      return totalCost
     }, 0)
     return Math.floor(yearlyCost * 11) / 10;
   }

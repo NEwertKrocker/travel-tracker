@@ -1,7 +1,5 @@
-let DataHandler = require('./DataHandler');
-
 class TravelerRepo {
-  constructor(travelerDataset){
+  constructor(travelerDataset) {
     this.dataset = travelerDataset;
   }
 }

@@ -1,6 +1,5 @@
 import {
   fetchTravelerRepo,
-  fetchTraveler,
   fetchDestinations,
   fetchTrips,
 } from './apiCalls.js';
@@ -9,13 +8,8 @@ import Traveler from './Traveler';
 import Destinations from './Destinations';
 import Trips from './Trips';
 import TravelerRepo from './TravelerRepo';
-import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/uncharted-map.jpg';
 import './images/earthfromspace.jpg';
 import './images/old-compasses.svg';
@@ -33,19 +27,15 @@ let trips;
 
 const buildTravelerRepo = (travelerRepoData) => {
   travelerRepo = new TravelerRepo(travelerRepoData);
-  console.log(travelerRepo);
 };
 const buildTraveler = (travelerData) => {
   currentTraveler = new Traveler(travelerData);
-  console.log(currentTraveler);
 };
 const buildDestinations = (destinationsData) => {
   destinations = new Destinations(destinationsData);
-  console.log(destinations);
 };
 const buildTrips = (tripsData) => {
   trips = new Trips(tripsData);
-  console.log(trips);
 };
 
 const getAPICalls = () => {
@@ -64,15 +54,11 @@ const buildClasses = (travelerRepoData, destinationsData, tripsData) => {
   buildTravelerRepo(travelerRepoData);
   buildDestinations(destinationsData);
   buildTrips(tripsData);
-  if(currentTraveler){
+  if (currentTraveler) {
     updateDOM(currentTraveler, trips, destinations)
-  };
-}
+  }
+};
 
 getAPICalls();
-
-const getRandomIndex = (array) => {
-  return Math.floor(Math.random() * array.length)
-};
 
 export {currentTraveler, trips, destinations, travelerRepo, getAPICalls, buildTraveler};

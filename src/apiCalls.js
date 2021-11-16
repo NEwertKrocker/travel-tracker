@@ -1,7 +1,3 @@
-import Traveler from './Traveler';
-import Destinations from './Destinations';
-import Trips from './Trips';
-
 const fetchTravelerRepo = () => {
   return fetch("http://localhost:3001/api/v1/travelers")
     .then((response) => response.json())
