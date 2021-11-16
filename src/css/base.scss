@@ -125,6 +125,18 @@ article:focus {
   font-family: $montserrat;
 }
 
+.new-trip-cost {
+  font-family: $montserrat;
+  font-size: 30px;
+  align-self: flex-end;
+}
+
+.error {
+  color: $bright-red;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
 .next-adventure {
   padding-bottom: 30px;
 }
@@ -179,7 +191,6 @@ article:focus {
 #loginError {
   color: $bright-red;
   font-family: sans-serif;
-
 }
 
 #yourTrips {
@@ -192,12 +203,6 @@ article:focus {
 #newTripRequestForm {
   display: flex;
   flex-direction: column;
-}
-
-#newTripCost {
-  font-family: $montserrat;
-  font-size: 30px;
-  align-self: flex-end;
 }
 
 #compassesIcon {

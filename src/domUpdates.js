@@ -128,16 +128,22 @@ const requestNewTrip = () => {
 
 const checkFormFields = () => {
   if(!dayjs(departureDateSelector.value).isAfter(dayjs())){
-    newTripCost.innerText = "You can't leave for a trip yesterday!"
+    newTripCost.classList.add("error");
+    newTripCost.innerText = "Alas, you cannot leave for a trip yesterday."
   } else if (!dayjs(departureDateSelector.value).isValid()){
-    newTripCost.innerText = "Please enter a valid date!"
+    newTripCost.classList.add("error");
+    newTripCost.innerText = "Please enter a valid date."
   } else if (tripDurationSelector.value <= 0){
+    newTripCost.classList.add("error");
     newTripCost.innerText = "Please enter a valid trip duration."
   } else if (tripTravelersSelector.value <= 0){
+    newTripCost.classList.add("error");
     newTripCost.innerText = "Isn't anyone going on this trip?"
   } else if (destinationSelector.value === 'null'){
+    newTripCost.classList.add("error");
     newTripCost.innerText = "Please select a valid destination."
   } else {
+    newTripCost.classList.remove("error");
     estimateTripCost(destinations);
   }
 }
@@ -148,7 +154,8 @@ const estimateTripCost = (destinations) => {
   let destination = parseInt(destinationSelector.value);
   let estimatedTripCost = Math.floor(destinations.getTotalLodgingCosts(destination, duration)
     + destinations.getTotalFlightCosts(destination, travelers) * 11) / 10;
-    newTripCost.innerText = `Cost estimate: $${estimatedTripCost}`
+  let costCurrency = Number.parseInt(estimatedTripCost).toFixed(2);
+    newTripCost.innerText = `Cost estimate: $${costCurrency}`
 }
 
 const checkKey = (event) => {
@@ -195,10 +202,12 @@ tripDurationSelector.addEventListener('input', checkFormFields);
 tripTravelersSelector.addEventListener('input', checkFormFields);
 submitTripRequestButton.addEventListener('click', () => {
   checkFormFields();
-  requestNewTrip();
-  clearTripGrid();
-  let timeoutID = setTimeout(getAPICalls, 200);
-  MicroModal.close('modal-1');
+  if(!newTripCost.classList.contains("error")){
+    requestNewTrip();
+    clearTripGrid();
+    let timeoutID = setTimeout(getAPICalls, 200);
+    MicroModal.close('modal-1');
+  }
 })
 
 export default updateDOM;
