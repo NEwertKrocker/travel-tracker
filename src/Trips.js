@@ -16,12 +16,15 @@ class Trips extends DataHandler {
       }
       return 0;
     })
-    console.log(this.filteredDataByUserID);
     return this.filteredDataByUserID;
   }
   calculateTravelCostYTD(userID, destinations){
-    this.getDataByUserID(userID);
-    let yearlyCost = this.filteredDataByUserID.reduce((totalCost, trip) => {
+    this.getAllUserTrips(userID);
+    let currentYearTrips = this.filteredDataByUserID.filter((trip) => {
+      return dayjs(trip.date).isAfter(dayjs("2021-01-01"));
+    })
+    console.log(currentYearTrips);
+    let yearlyCost = currentYearTrips.reduce((totalCost, trip) => {
         const destination = destinations.getDataByID(trip.destinationID);
         const lodgingCosts = destinations.getTotalLodgingCosts(destination[0].id, trip.duration);
         const flightCosts = destinations.getTotalFlightCosts(destination[0].id, trip.travelers);
