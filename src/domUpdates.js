@@ -4,14 +4,14 @@ import MicroModal from 'micromodal';
 
 const validateLogin = () => {
   let parsedID;
-  if(userName.value.includes('traveler') && password.value === 'travel'){
+  if (userName.value.includes('traveler') && password.value === 'travel') {
     loginError.text = ``;
     let userID = userName.value.replace('traveler', '');
     parsedID = parseInt(userID)
   } else {
     loginError.innerText = `Username and password not recognized! Please try again.`
   }
-  if(parsedID > 0 && parsedID <= 50){
+  if (parsedID > 0 && parsedID <= 50) {
     buildTraveler(travelerRepo.dataset[parsedID - 1]);
     updateDOM(currentTraveler, trips, destinations);
     showMainPage();
@@ -68,7 +68,9 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
     const destinationImage = destination[0].image;
     const tripEnd = dayjs(trip.date).add(trip.duration, 'day').format('YYYY/MM/DD');
     let pendingNotice = ``;
-    if(trip.status === 'pending'){pendingNotice = `PENDING`};
+    if (trip.status === 'pending') {
+      pendingNotice = `PENDING`
+    }
     tripGrid.innerHTML += `<article class="trip-card" tabindex="0">
           <div class="destination-photo" style="background-image: url(${destinationImage});">
               <p class="trip-shader">
@@ -88,7 +90,7 @@ const buildTravelCardGrid = (currentTraveler, trips, destinations) => {
   })
 }
 
-const addTripRequestCard = (currentTraveler, trips, destinations) => {
+const addTripRequestCard = () => {
   tripGrid.innerHTML += `<article class="trip-card" id="planTripCard" data-micromodal-trigger="modal-1" tabindex='0'>
       <div class="destination-photo" style="background-image: url('./images/earthfromspace.jpg');">
         <p class="trip-shader">
@@ -99,7 +101,7 @@ const addTripRequestCard = (currentTraveler, trips, destinations) => {
         <h2>PLAN A NEW TRIP</h2>
       </div>
     </article>`
-    MicroModal.init({awaitCloseAnimation: true});
+  MicroModal.init({awaitCloseAnimation: true});
 }
 
 const populateDestinationSelector = (destinations) => {
@@ -122,30 +124,30 @@ const requestNewTrip = () => {
     suggestedActivities: []
   };
   return fetch('http://localhost:3001/api/v1/trips', {
-      method: 'POST',
-      body: JSON.stringify(newTrip),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+    method: 'POST',
+    body: JSON.stringify(newTrip),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
     .then(response => response.json())
     .catch(err => console.log(err))
 };
 
 const checkFormFields = () => {
-  if(!dayjs(departureDateSelector.value).isAfter(dayjs())){
+  if (!dayjs(departureDateSelector.value).isAfter(dayjs())) {
     newTripCost.classList.add("error");
     newTripCost.innerText = "Alas, you cannot leave for a trip yesterday."
-  } else if (!dayjs(departureDateSelector.value).isValid()){
+  } else if (!dayjs(departureDateSelector.value).isValid()) {
     newTripCost.classList.add("error");
     newTripCost.innerText = "Please enter a valid date."
-  } else if (tripDurationSelector.value <= 0){
+  } else if (tripDurationSelector.value <= 0) {
     newTripCost.classList.add("error");
     newTripCost.innerText = "Please enter a valid trip duration."
-  } else if (tripTravelersSelector.value <= 0){
+  } else if (tripTravelersSelector.value <= 0) {
     newTripCost.classList.add("error");
     newTripCost.innerText = "Isn't anyone going on this trip?"
-  } else if (destinationSelector.value === 'null'){
+  } else if (destinationSelector.value === 'null') {
     newTripCost.classList.add("error");
     newTripCost.innerText = "Please select a valid destination."
   } else {
@@ -165,15 +167,15 @@ const estimateTripCost = (destinations) => {
 }
 
 const checkKey = (event) => {
-  if(event.key === ' '){
+  if (event.key === ' ') {
     openModal(event);
-  } else if(event.key === 'Enter') {
+  } else if (event.key === 'Enter') {
     openModal(event);
   }
 };
 
 const openModal = (event) => {
-  if(event.target.id === 'planTripCard'){
+  if (event.target.id === 'planTripCard') {
     MicroModal.show('modal-1');
   }
 };
@@ -183,14 +185,12 @@ const openModal = (event) => {
 const tripGrid = document.getElementById('tripGrid');
 const travelerGreeting = document.getElementById('travelerGreeting');
 const totalTravelCosts = document.getElementById('totalTravelCosts');
-const planTripCard = document.getElementById('planTripCard');
 const destinationSelector = document.getElementById('destinationSelector');
 const departureDateSelector = document.getElementById('departureDateSelector');
 const tripDurationSelector = document.getElementById('tripDurationSelector');
 const tripTravelersSelector = document.getElementById('tripTravelersSelector');
 const submitTripRequestButton = document.getElementById('submitTripRequestButton');
 const newTripCost = document.getElementById('newTripCost');
-const pageHeader = document.getElementById('pageHeader');
 const pageSpacer = document.getElementById('pageSpacer');
 const loginSection = document.getElementById('loginSection');
 const userName = document.getElementById('userName');
@@ -210,7 +210,7 @@ tripDurationSelector.addEventListener('input', checkFormFields);
 tripTravelersSelector.addEventListener('input', checkFormFields);
 submitTripRequestButton.addEventListener('click', () => {
   checkFormFields();
-  if(!newTripCost.classList.contains("error")){
+  if (!newTripCost.classList.contains("error")) {
     requestNewTrip();
     clearTripGrid();
     let timeoutID = setTimeout(getAPICalls, 200);

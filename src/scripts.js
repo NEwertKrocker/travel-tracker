@@ -1,6 +1,5 @@
 import {
   fetchTravelerRepo,
-  fetchTraveler,
   fetchDestinations,
   fetchTrips,
 } from './apiCalls.js';
@@ -9,7 +8,6 @@ import Traveler from './Traveler';
 import Destinations from './Destinations';
 import Trips from './Trips';
 import TravelerRepo from './TravelerRepo';
-import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
 import './css/base.scss';
 import './images/uncharted-map.jpg';
@@ -56,15 +54,11 @@ const buildClasses = (travelerRepoData, destinationsData, tripsData) => {
   buildTravelerRepo(travelerRepoData);
   buildDestinations(destinationsData);
   buildTrips(tripsData);
-  if(currentTraveler){
+  if (currentTraveler) {
     updateDOM(currentTraveler, trips, destinations)
-  };
-}
+  }
+};
 
 getAPICalls();
-
-const getRandomIndex = (array) => {
-  return Math.floor(Math.random() * array.length)
-};
 
 export {currentTraveler, trips, destinations, travelerRepo, getAPICalls, buildTraveler};

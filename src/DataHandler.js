@@ -1,15 +1,15 @@
 class DataHandler {
-  constructor(dataset){
+  constructor(dataset) {
     this.dataset = dataset;
     this.filteredDataByID;
   }
-  getDataByID(id){
+  getDataByID(id) {
     this.filteredDataByID = this.dataset.filter((data) => {
       return data.id === id
     })
     return this.filteredDataByID;
   }
-  getDataByUserID(userID){
+  getDataByUserID(userID) {
     this.filteredDataByUserID = this.dataset.filter((data) => {
       return data.userID === userID
     })
