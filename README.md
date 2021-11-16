@@ -42,6 +42,7 @@ Turing, Mod 2 - Final solo project
       `npm install`
   3. Run the server with `npm start`
   4. With both the server running and this package, visit `http://localhost:8080/` in your browser.
+  5. To log in, use a username from `traveler1` to `traveler50` with the password `travel`.
 
 ## Contributors
   - [Nate Ewert-Krocker](https://github.com/newertkrocker)
@@ -53,4 +54,4 @@ Turing, Mod 2 - Final solo project
   - I didn't run into any major challenges in this project, but thus far this mock-up is only for a traveler, not a travel agent -- I would love to implement an "admin" account type that could approve and delete trips as is laid out in the spec.
 
 ## Project Specs
-  - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/travel-tracker.html)
+  - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/travel-tracker.html).
