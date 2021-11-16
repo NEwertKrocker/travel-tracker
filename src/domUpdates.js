@@ -127,7 +127,9 @@ const requestNewTrip = () => {
 };
 
 const checkFormFields = () => {
-  if(!dayjs(departureDateSelector.value).isValid()){
+  if(!dayjs(departureDateSelector.value).isAfter(dayjs())){
+    newTripCost.innerText = "You can't leave for a trip yesterday!"
+  } else if (!dayjs(departureDateSelector.value).isValid()){
     newTripCost.innerText = "Please enter a valid date!"
   } else if (tripDurationSelector.value <= 0){
     newTripCost.innerText = "Please enter a valid trip duration."
