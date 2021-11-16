@@ -8,12 +8,12 @@ Turing, Mod 2 - Final solo project
   - [Illustrations](#illustrations)
   - [Install + Setup](#set-up)
   - [Contributors](#contributors)
-	- [Wins](#wins)
-	- [Challenges + Improvements](#challenges-+-Improvements)
+  - [Wins](#wins)
+  - [Challenges + Improvements](#challenges-+-Improvements)
   - [Project Specs](#project-specs)
 
 ## Abstract
-	- "Travel Tracker" is a mock-up site which allows a user to keep track of trips they've taken, how much they've spent on travel, and also allows them to request new trips (which appear on the site with a "pending" stamp). This project was an opportunity to bring together all of the major concepts I've been practicing over the last few weeks, including using Test-Driven Development, working with an API and making fetch requests to and from a server, practicing accessible design, utilizing SASS, and learning new NPM packages.
+  - "Travel Tracker" is a mock-up site which allows a user to keep track of trips they've taken, how much they've spent on travel, and also allows them to request new trips (which appear on the site with a "pending" stamp). This project was an opportunity to bring together all of the major concepts I've been practicing over the last few weeks, including using Test-Driven Development, working with an API and making fetch requests to and from a server, practicing accessible design, utilizing SASS, and learning new NPM packages.
 
 ## Technologies
   - [Atom](https://atom.io/)
@@ -27,7 +27,7 @@ Turing, Mod 2 - Final solo project
 
 ## Illustrations
 
-![Travel Tracker](/src/traveltracker.gif)
+![Travel Tracker](/src/images/traveltracker.gif)
 
 ## Installation and Setup:
 **To navigate the website live, a server download is required.**
