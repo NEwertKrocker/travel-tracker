@@ -27,6 +27,15 @@ const showMainPage = () => {
   loginSection.classList.toggle("hidden");
 }
 
+const signOutUser = () => {
+  travelerGreeting.innerText = `TRAVEL TRACKER`;
+  totalTravelCosts.innerHTML = '';
+  userName.value = '';
+  password.value = '';
+  showMainPage();
+  clearTripGrid();
+}
+
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations);
   addTripRequestCard(currentTraveler, trips, destinations);
@@ -192,11 +201,13 @@ const password = document.getElementById('password');
 const loginError = document.getElementById('loginError');
 const signInButton = document.getElementById('signInButton');
 const mainPage = document.getElementById('mainPage');
+const signOutButton = document.getElementById('signOutButton');
 
 // EVENT LISTENERS
 
 tripGrid.addEventListener('keydown', checkKey);
 signInButton.addEventListener('click', validateLogin);
+signOutButton.addEventListener('click', signOutUser);
 destinationSelector.addEventListener('input', checkFormFields);
 tripDurationSelector.addEventListener('input', checkFormFields);
 tripTravelersSelector.addEventListener('input', checkFormFields);

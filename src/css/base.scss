@@ -38,7 +38,8 @@ article:focus {
   border-radius: $slight-curve;
 }
 
-.sign-in-button {
+.sign-in-button,
+.sign-out {
   font-family: $montserrat;
   font-size: 18px;
   padding: 5px 10px;
@@ -49,6 +50,13 @@ article:focus {
   border-width: 0;
   cursor: pointer;
   margin: 5px;
+}
+
+.sign-in-button:hover,
+.sign-in-button:focus,
+.sign-out:focus,
+.sign-out:hover {
+  transform: scale(1.05, 1.05);
 }
 
 .top-banner {
@@ -164,6 +172,11 @@ article:focus {
 
 .hidden {
   display: none;
+}
+
+.footer-bar {
+  display: flex;
+  justify-content: center;
 }
 
 #travelerGreeting {
