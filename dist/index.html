@@ -9,11 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <title>Travel Tracker</title>
 </head>
-<header>
+<span class="page-spacer" id="pageSpacer">
+</span>
+<header class="page-header" id="pageHeader">
   <nav class="top-banner">
-    <h1 id="travelerGreeting">Welcome, user!</h1>
+    <h1 id="travelerGreeting">TRAVEL TRACKER</h1>
     <h2 id="totalTravelCosts"></h2>
   </nav>
+  <section class="login" id="loginSection">
+    <h1>Welcome to Travel Tracker!</h1>
+    <p><label for="userName">Username:</label>
+    <input type="text" id="userName" name="username" required>
+    <p><label for="password"> Password: </label>
+    <input type="password" id="password" required>
+    <p id="loginError"></p>
+    <p><input type="button" class="sign-in-button" value="LET'S GO!" id='signInButton'>
+  </section>
 </header>
 <body>
   <!-- new trip request modal -->
@@ -29,13 +40,13 @@
       <main class="modal__content" id="modal-1-content">
         <h3> Let's make a plan for a new adventure! </h3>
         <form id="newTripRequestForm">
-          <p><label for="date of departure">When would you like to leave?</label>
+          <p><label for="departureDateSelector">When would you like to leave?</label>
           <input type="text" id="departureDateSelector" placeholder="MM/DD/YYYY"></input></p>
-          <p><label for="duration">How many days will this trip be?</label>
+          <p><label for="tripDurationSelector">How many days will this trip be?</label>
           <input type="number" id="tripDurationSelector" placeholder="1" min="1" max="365" value="1"></input></p>
-          <p><label for="number of travelers">How many people will be traveling?</label>
+          <p><label for="tripTravelersSelector">How many people will be traveling?</label>
           <input type="number" id="tripTravelersSelector" placeholder="1" min="1" max="365" value="1"></input></p>
-          <p><label for="destination">Where would you like to get away to?</label>
+          <p><label for="destinationSelector">Where would you like to get away to?</label>
           <select id="destinationSelector" name="destination selector" placeholder="I've been dreaming of...">
             <option value=null>I've been dreaming of...</option>
             <!-- generate destination list here -->
@@ -49,12 +60,13 @@
     </div>
   </div>
 </div>
+<div class="main-page hidden" id="mainPage">
   <h2 id="yourTrips">YOUR TRIPS</h2>
   <section class="trip-grid" id="tripGrid">
-<!-- generated trip cards go here -->
+    <!-- generated trip cards go here -->
   </section>
+</div>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
+<script src="bundle.js"></script>
 </body>
 </html>

@@ -1,6 +1,25 @@
-import { currentTraveler, trips, destinations, getAPICalls } from './scripts.js';
+import { currentTraveler, trips, destinations, travelerRepo, getAPICalls, buildTraveler } from './scripts.js';
 import dayjs from 'dayjs';
 import MicroModal from 'micromodal';
+
+const validateLogin = () => {
+  if(userName.value.includes('traveler') && password.value === 'travel'){
+    loginError.text = ``;
+    let userID = userName.value.replace('traveler', '');
+    let parsedID = parseInt(userID);
+    buildTraveler(travelerRepo.dataset[parsedID - 1]);
+    updateDOM(currentTraveler, trips, destinations);
+    showMainPage();
+  } else {
+    loginError.innerText = `Username and password not recognized! Please try again.`
+  }
+}
+
+const showMainPage = () => {
+  pageSpacer.classList.toggle("hidden");
+  mainPage.classList.toggle("hidden");
+  loginSection.classList.toggle("hidden");
+}
 
 const updateDOM = (currentTraveler, trips, destinations) => {
   buildTravelCardGrid(currentTraveler, trips, destinations);
@@ -12,7 +31,6 @@ const updateDOM = (currentTraveler, trips, destinations) => {
 
 const clearTripGrid = () => {
   tripGrid.innerHTML = ``;
-  console.log("Grid cleared!");
 }
 
 const displayGreeting = (currentTraveler) => {
@@ -67,7 +85,7 @@ const addTripRequestCard = (currentTraveler, trips, destinations) => {
         <h2>PLAN A NEW TRIP</h2>
       </div>
     </article>`
-    MicroModal.init();
+    MicroModal.init({awaitCloseAnimation: true});
 }
 
 const populateDestinationSelector = (destinations) => {
@@ -151,23 +169,29 @@ const tripDurationSelector = document.getElementById('tripDurationSelector');
 const tripTravelersSelector = document.getElementById('tripTravelersSelector');
 const submitTripRequestButton = document.getElementById('submitTripRequestButton');
 const newTripCost = document.getElementById('newTripCost');
+const pageHeader = document.getElementById('pageHeader');
+const pageSpacer = document.getElementById('pageSpacer');
+const loginSection = document.getElementById('loginSection');
+const userName = document.getElementById('userName');
+const password = document.getElementById('password');
+const loginError = document.getElementById('loginError');
+const signInButton = document.getElementById('signInButton');
+const mainPage = document.getElementById('mainPage');
 
 // EVENT LISTENERS
 
-tripGrid.addEventListener('keyup', checkKey);
+tripGrid.addEventListener('keydown', checkKey);
+signInButton.addEventListener('click', validateLogin);
 destinationSelector.addEventListener('input', checkFormFields);
-// departureDateSelector.addEventListener('input', checkFormFields);
 tripDurationSelector.addEventListener('input', checkFormFields);
 tripTravelersSelector.addEventListener('input', checkFormFields);
 submitTripRequestButton.addEventListener('click', () => {
   checkFormFields();
   requestNewTrip();
   clearTripGrid();
-  let timeoutID = setTimeout(getAPICalls, 200); // is this always gonna be enough?
+  let timeoutID = setTimeout(getAPICalls, 200);
   MicroModal.close('modal-1');
 })
-
-
 
 export default updateDOM;
 export {};

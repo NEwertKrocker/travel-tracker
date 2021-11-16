@@ -64,10 +64,9 @@ const buildClasses = (travelerRepoData, destinationsData, tripsData) => {
   buildTravelerRepo(travelerRepoData);
   buildDestinations(destinationsData);
   buildTrips(tripsData);
-  console.log(trips.getAllUserTrips(1));
-  let randomTraveler = getRandomIndex(travelerRepo.dataset)
-  buildTraveler(travelerRepo.dataset[47]); //hardcoded traveler
-  updateDOM(currentTraveler, trips, destinations);
+  if(currentTraveler){
+    updateDOM(currentTraveler, trips, destinations)
+  };
 }
 
 getAPICalls();
@@ -76,4 +75,4 @@ const getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length)
 };
 
-export {currentTraveler, trips, destinations, getAPICalls};
+export {currentTraveler, trips, destinations, travelerRepo, getAPICalls, buildTraveler};
